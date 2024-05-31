@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Martínez Pérez</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" href="Portfolio.css">
+    <link rel="stylesheet" href="Mediaqueries.css">
+</head>
+<!-- BODY -->
+<body class="light-mode">
+  <header class="container">
+    <nav id="barra_navegacion">
+        <ul class="links-nav">
+            <li><a href="#about" class="OpcionesMenu">ABOUT ME</a></li>
+            <li><a href="#experience" class="OpcionesMenu">EXPERIENCE</a></li>
+            <li><a href="#projects" class="OpcionesMenu">PROJECTS</a></li>
+            <li><a href="#contact" class="OpcionesMenu">CONTACT</a></li>
+        </ul>
+        <input id="checkbox" type="checkbox" />
+        <label class="switch" for="checkbox">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+                <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"></path>
+            </svg>
+        </label>
+    </nav>
+</header>
+<section id="profile">
+    <div class="section_pic-container">
+        <img src="IMG/[removal.ai]_4d883432-fe46-4828-9fd1-ba665deceaca-logo.png" alt="logo">
+    </div>
+    <div class="section_text">
+        <p class="p1">Hello, I'm</p>
+        <h1 class="titulo">Jorge Martínez Pérez</h1>
+        <p class="p2">Web Developer</p>
+        <div class="btn-container">
+            <button class="btn btn-color-2" onclick="window.open('./Adjunto/CURRÍCULUM.pdf')">Download CV</button>
+        </div>
+        <div id="socials-container">
+            <img src="IMG/LinkedIn_Logo.svg.png" alt="Perfil Linkedin" class="icon" onclick="location.href='https://www.linkedin.com/in/jorge-mart%C3%ADnez-0a73822b5/'"/>
+            <img src="IMG/github_logo_icon_147285.png" alt="Perfil GitHub" class="icon" id="github-icon" onclick="location.href='https://github.com/JMP2024'"/>
+
+            <script>
+            // Detectar el cambio de modo
+            const checkbox = document.getElementById('checkbox');
+            checkbox.addEventListener('change', () => {
+                // Obtener el elemento de imagen del logo de GitHub
+                const githubIcon = document.getElementById('github-icon');
+                // Verificar si el modo es oscuro
+                if (checkbox.checked) {
+                    // Cambiar la fuente de la imagen del logo de GitHub al modo oscuro
+                    githubIcon.src = "IMG/github_logo_icon_147285.png";
+                } else {
+                    // Cambiar la fuente de la imagen del logo de GitHub al modo claro
+                    githubIcon.src = "IMG/logo claro.png";
+                }
+            });
+            </script>
+        </div>
+    </div>
+</section>
+<!-- SECCIÓN DE EXPERIENCIA -->
+<section id="gallery">
+    <p class="p1">Explore My </p>
+    <h1 class="titulo">Experience</h1>
+    <div class="gallery-container">
+        <figure class="gallery-item">
+            <img src="IMG/JAVA.png" alt="Imagen 1">
+            <figcaption>Java</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="IMG/octo.png" alt="Imagen 2">
+            <figcaption>GitHub</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="IMG/javascript-3.png" alt="Imagen 3">
+            <figcaption>JavaScript</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="IMG/mysql_PNG9.png" alt="Imagen 3">
+            <figcaption>MySQL</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="IMG/PHP-logo.svg.png" alt="Imagen 3">
+            <figcaption>PHP</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="IMG/CSS.png" alt="Imagen 3">
+            <figcaption>CSS</figcaption>
+        </figure>
+    </div>
+    
+</section>
+
+ <!-- SCRIPT PARA MOVIMIENTO DEL CARRUSEL -->
+<script>
+    let currentIndex = 0;
+    
+    function navigate(direction) {
+       const galleryContainer = document.querySelector('.gallery-container');
+       const totalImages = document.querySelectorAll('.gallery-item').length;
+    
+       currentIndex = (currentIndex + direction + totalImages) % totalImages;
+       const offset = -currentIndex * 100;
+    
+       galleryContainer.style.transform = `translateX(${offset}%)`;
+    }
+    </script>
+
+    <!-- SCRIPT PARA MOVIMIENTO AUTOMÁTICO -->
+    <script>
+        let autoplayInterval = null;
+        
+        function startAutoplay(interval) {
+           stopAutoplay(); // Detiene cualquier autoplay anterior para evitar múltiples intervalos.
+           autoplayInterval = setInterval(() => {
+              navigate(1); // Navega a la siguiente imagen cada intervalo de tiempo.
+           }, interval);
+        }
+        
+        function stopAutoplay() {
+           clearInterval(autoplayInterval);
+        }
+        
+        // Iniciar autoplay con un intervalo de 2 segundos.
+        startAutoplay(2000);
+        
+        // Opcional: Detener autoplay cuando el usuario interactúa con los botones de navegación.
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', stopAutoplay);
+        });
+        </script>
+<!-- SECCIÓN DE PROYECTOS -->
+<section id="projects">
+    <p class="p1">Explore My Recent</p>
+    <h1 class="titulo">Projects</h1>
+    <div class="experience-details-container">
+        <div class="details-container color-container">
+            <div class="article-container">
+                <div class="card">
+                    <div class="image"></div>
+                    <div class="content">
+                        <a href="#">
+                            <span class="title">PROYECTO 1.</span>
+                        </a>
+                        <p class="desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+                            dolores, possimus pariatur animi temporibus nesciunt praesentium 
+                        </p>
+                        <a class="action" href="#">
+                            Find out more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image"></div>
+                    <div class="content">
+                        <a href="#">
+                            <span class="title">PROYECTO 2.</span>
+                        </a>
+                        <p class="desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+                            dolores, possimus pariatur animi temporibus nesciunt praesentium 
+                        </p>
+                        <a class="action" href="#">
+                            Find out more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image"></div>
+                    <div class="content">
+                        <a href="#">
+                            <span class="title">PROYECTO 3.</span>
+                        </a>
+                        <p class="desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+                            dolores, possimus pariatur animi temporibus nesciunt praesentium 
+                        </p>
+                        <a class="action" href="#">
+                            Find out more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECCIÓN DE CONTACTO -->
+<footer class="container">
+    
+    <section id="contact">
+      
+        <div class="contact-form">
+              <h1 class="titulo">Contact</h1>
+            <form method="POST" action="form.php">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="company">Company Name:</label>
+                <input type="text" id="company" name="company" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+</footer>
+
+<script src="Portfolio.js"></script>
+</body>
+</html>
